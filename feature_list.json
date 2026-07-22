@@ -1,0 +1,101 @@
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Project Setup",
+      "description": "Initialize package.json, TypeScript config, lint/test tooling; confirm clean checkout runs ./init.sh",
+      "dependencies": [],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-002",
+      "name": "TrackerProvider Interface",
+      "description": "Define src/providers/tracker/types.ts: TrackerProvider interface covering watch/poll status transitions, read issue body/comments, post comment, open PR/MR linked to issue, read PR/MR review state, update project board status field",
+      "dependencies": ["feat-001"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-003",
+      "name": "GitHub TrackerProvider Implementation",
+      "description": "Implement src/providers/tracker/github/ against TrackerProvider using gh CLI or Octokit, targeting GitHub Issues + Projects v2",
+      "dependencies": ["feat-002"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-004",
+      "name": "AgentProvider Interface",
+      "description": "Define src/providers/agent/types.ts: AgentProvider interface covering run(repoPath, taskDescription, worktreePath) -> { success, summary }, used for both plan-writing and implementation steps",
+      "dependencies": ["feat-001"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-005",
+      "name": "Claude Code AgentProvider Implementation",
+      "description": "Implement src/providers/agent/claude-code/ against AgentProvider, invoking Claude Code CLI in a given worktree",
+      "dependencies": ["feat-004"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-006",
+      "name": "Orchestration State Machine",
+      "description": "Implement src/orchestrator/ state machine: Ready -> Plan Written -> Approved -> Implementing -> Review -> Done, calling only TrackerProvider/AgentProvider interfaces (never concrete providers directly)",
+      "dependencies": ["feat-003", "feat-005"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-007",
+      "name": "Plan Analysis Step (Ready -> Plan Written)",
+      "description": "On issue Ready transition, invoke AgentProvider to analyze the issue and post a design/plan comment back to the issue via TrackerProvider",
+      "dependencies": ["feat-006"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-008",
+      "name": "Implementation Step (Approved -> Review)",
+      "description": "On human approval, clone repo, create worktree/branch, invoke AgentProvider to implement, run target repo's tests, open PR with Closes #N, move issue to Review",
+      "dependencies": ["feat-007"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-009",
+      "name": "Revision Loop (Review -> Review)",
+      "description": "On human PR change request, re-invoke AgentProvider against the same branch/worktree to address feedback, re-run tests, push update",
+      "dependencies": ["feat-008"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-010",
+      "name": "Merge Reconciliation (Review -> Done)",
+      "description": "Detect PR merge (via TrackerProvider), sync project board status to Done; rely on native issue auto-close from Closes #N, don't duplicate it",
+      "dependencies": ["feat-009"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-011",
+      "name": "Verification Coverage",
+      "description": "Unit tests for state machine transitions and both provider interfaces (with fakes), integration test against a real test repo/issue if feasible",
+      "dependencies": ["feat-010"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-012",
+      "name": "Documentation Update",
+      "description": "README covering setup, required env vars/tokens, how to add a new TrackerProvider or AgentProvider",
+      "dependencies": ["feat-011"],
+      "status": "not-started",
+      "evidence": ""
+    }
+  ],
+  "_evidenceStyle": "Keep evidence to one line: commit hash + short pointer (e.g. 'Commit abc1234 - added X, tests pass'). Debugging narrative and design discussion belong in the commit message, not this file. See feature-list.schema.json."
+}

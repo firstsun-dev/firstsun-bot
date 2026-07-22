@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "devops-engineer": {
+      "source": "firstsun-dev/skills",
+      "sourceType": "github",
+      "skillPath": "external/develop/devops/devops-engineer/SKILL.md",
+      "computedHash": "6de5e562151fe9c227234e81bdc1e647066d6b1822463eadf296a5344b47e35a"
+    },
+    "gh-cli": {
+      "source": "firstsun-dev/skills",
+      "sourceType": "github",
+      "skillPath": "external/develop/devops/gh-cli/SKILL.md",
+      "computedHash": "cbe644b0c6760ae2a1eaafa39133920d889331327065d92a131675a665273e56"
+    },
+    "github-actions": {
+      "source": "firstsun-dev/skills",
+      "sourceType": "github",
+      "skillPath": "custom/develop/github-actions/SKILL.md",
+      "computedHash": "6a3a3ffc314062e2a27f3535cb959d2469f1cf74964134acae157a593bccd9f5"
+    },
+    "secret-scanning": {
+      "source": "firstsun-dev/skills",
+      "sourceType": "github",
+      "skillPath": "external/develop/security/secret-scanning/SKILL.md",
+      "computedHash": "cc7de79bee80775578227a370637d0a83aa0f2cbec28374058899859261d2081"
+    },
+    "using-git-worktrees": {
+      "source": "firstsun-dev/skills",
+      "sourceType": "github",
+      "skillPath": "external/develop/devops/using-git-worktrees/SKILL.md",
+      "computedHash": "212ad917e5543e84ea3adf4e3fab537675db976fdab05d4de432870e38b49e80"
+    }
+  }
+}
