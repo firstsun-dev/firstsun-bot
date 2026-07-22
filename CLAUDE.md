@@ -74,9 +74,9 @@ Before ending a session:
 ```
 
 Required checks:
-- `npm run lint`
-- `npm run build`
-- `npm test`
+- `pnpm run lint`
+- `pnpm run build`
+- `pnpm test`
 
 ## Escalation
 

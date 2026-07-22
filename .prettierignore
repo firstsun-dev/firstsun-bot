@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+pnpm-lock.yaml
+
+# Vendored/harness content managed outside this feature's scope
+.agents/
+archive/
+CLAUDE.md
+session-handoff.md
+docs/
+progress.md
