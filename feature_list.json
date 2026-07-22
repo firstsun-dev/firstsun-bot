@@ -6,15 +6,15 @@
       "description": "Write docs/REQUIREMENTS.md (FR/NFR/AC + open questions), docs/SPEC.md (provider interfaces, polling/idempotency design, tooling + pinned versions, husky/commitlint, file tree, implementation order), docs/TEST-PLAN.md (test layers, fakes, case list, requirement traceability)",
       "dependencies": [],
       "status": "done",
-      "evidence": "Uncommitted - docs/{REQUIREMENTS,SPEC,TEST-PLAN}.md written; cross-doc traceability checked, no code yet"
+      "evidence": "Commit 6bb3550 - docs/{REQUIREMENTS,SPEC,TEST-PLAN}.md written; cross-doc traceability checked, no code yet"
     },
     {
       "id": "feat-001",
       "name": "Project Setup",
       "description": "Initialize package.json (pnpm, ESM, Node>=24), tsconfig, eslint flat config with the 3 boundary zones, vitest, prettier, husky+lint-staged+commitlint, .npmrc; switch init.sh and CLAUDE.md verification commands to pnpm; confirm clean checkout runs ./init.sh. See docs/SPEC.md sections 2.1-2.3.2 and 11 step 1",
       "dependencies": ["feat-000"],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "Commit 8769af7 - ./init.sh green; TEST-PLAN §5.1 negative checks 1-9,11 verified manually"
     },
     {
       "id": "feat-002",
