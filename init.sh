@@ -3,14 +3,20 @@ set -e
 
 echo "=== Harness Initialization ==="
 
-echo "=== npm run lint ==="
-npm run lint
+echo "=== corepack enable ==="
+corepack enable
 
-echo "=== npm run build ==="
-npm run build
+echo "=== pnpm install --frozen-lockfile ==="
+pnpm install --frozen-lockfile
 
-echo "=== npm test ==="
-npm test
+echo "=== pnpm run lint ==="
+pnpm run lint
+
+echo "=== pnpm run build ==="
+pnpm run build
+
+echo "=== pnpm test ==="
+pnpm test
 
 echo "=== Verification Complete ==="
 echo ""

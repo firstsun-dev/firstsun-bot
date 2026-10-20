@@ -1,0 +1,9 @@
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -v '^\.env\.example$')
+if [ -n "$staged" ]; then
+  if echo "$staged" | xargs -r git diff --cached -- | grep -E '(ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{22,}|sk-ant-[A-Za-z0-9-]{20,}|gho_[A-Za-z0-9]{36})' > /dev/null; then
+    echo "pre-commit: staged content looks like it contains a secret token. Aborting commit." >&2
+    exit 1
+  fi
+fi
+
+pnpm exec lint-staged
