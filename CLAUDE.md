@@ -16,72 +16,29 @@ This is a hard requirement, not a nice-to-have. The system must support swapping
 
 This repo is **public**. Tokens (tracker PAT, AI agent API keys) are read from environment variables only, never committed, never logged. Use the installed `secret-scanning` skill's guidance (push protection, custom patterns) before any commit that touches config or provider code.
 
-## Startup Workflow
+## Start
 
-Before writing code:
+Read this file, then only what the task needs. From an issue: read it and what it links. Resuming: read the
+Draft PR description, commits, checks and review comments before editing.
 
-1. **Confirm working directory** with `pwd`
-2. **Read this file** completely
-3. **Read project docs if present** (`docs/ARCHITECTURE.md`, `docs/PRODUCT.md`, README, or equivalent)
-4. **Run `./init.sh`** to verify environment is healthy
-5. **Read `feature_list.json`** to see current feature state
-6. **Review recent commits** with `git log --oneline -5`
+## Task tracking and handoff
 
-If baseline verification is failing, repair that first before adding new scope.
+- Tasks and backlog: GitHub Issues. Priority and status: [Project #6](https://github.com/orgs/firstsun-dev/projects/6).
+- Progress and handoff: branch, commits, Draft PR. Unfinished work goes to an issue.
+- History: git log; retired state files are in `archive/legacy-harness/` (do not load by default).
 
-## Working Rules
+## Scope
 
-- **One feature at a time**: Pick exactly one unfinished feature from `feature_list.json`
-- **Verification required**: Don't claim done without running verification commands
-- **Update artifacts**: Before ending session, update `progress.md` and `feature_list.json`
-- **Keep state files short**: `progress.md` tracks only open work (~80 lines max). When a feature finishes, move it to `archive/YYYY-MM.md` (current month) as one line: name + commit hash. Keep `feature_list.json` evidence to one line — commit hash + short pointer; narrative belongs in the commit message. Rewrite `session-handoff.md` each session — overwrite, never append.
-- **Stay in scope**: Don't modify files unrelated to the current feature
-- **Leave clean state**: Next session must be able to run `./init.sh` immediately
+- One task per branch (a worktree when sessions run in parallel). Check open PRs for overlap.
+- No unrelated refactoring; file an issue instead.
 
-## Required Artifacts
-
-- `feature_list.json` — Feature state tracker (source of truth)
-- `progress.md` — Session continuity log (open work only)
-- `archive/YYYY-MM.md` — Completed work, one file per calendar month
-- `init.sh` — Standard startup and verification path
-- `session-handoff.md` — Optional, for larger sessions
-
-## Definition of Done
-
-A feature is done only when ALL of the following are true:
-
-- [ ] Target behavior is implemented
-- [ ] Required verification actually ran (tests / lint / type-check)
-- [ ] Evidence recorded in `feature_list.json` or `progress.md`
-- [ ] Repository remains restartable from standard startup path
-
-## End of Session
-
-Before ending a session:
-
-1. Update `progress.md` with current state
-2. Update `feature_list.json` with new feature status
-3. Move finished items from `progress.md` to `archive/YYYY-MM.md` (one line each: name + commit hash)
-4. Record any unresolved risks or blockers
-5. Commit with descriptive message once work is in safe state
-6. Leave repo clean enough for next session to run `./init.sh` immediately
-
-## Verification Commands
+## Verification and Definition of Done
 
 ```bash
-# Full verification (recommended)
-./init.sh
+./init.sh   # npm run lint, build, test
 ```
 
-Required checks:
-- `npm run lint`
-- `npm run build`
-- `npm test`
+There is no `package.json` yet, so this is NOT RUN until #1 scaffolds the project.
 
-## Escalation
-
-If you encounter:
-- **Architecture decisions**: Consult project architecture docs if present, otherwise ask user
-- **Unclear requirements**: Check product/requirements docs if present, otherwise ask user
-- **Repeated test failures**: Update progress, flag for human review
-- **Scope ambiguity**: Re-read `feature_list.json` for definition of done
+The PR records each check as PASS, FAIL, SKIP or NOT RUN (with the reason). Never call a failure
+pre-existing without reproducing it on the base branch.
